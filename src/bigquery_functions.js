@@ -1,32 +1,25 @@
 
-function generateQuery(query, table, input_filter = "", order_by = "", page_size = "", page_token = "") {
+function generateQuery(query, table, input_filter, order_by, page_size, page_token) {
   
+  if (!page_size) page_size = "10";
+
   var filter = "";
   var orderBy = "";
   var pageSize = "";
   var pageToken = "";
 
   if (input_filter)
-    filter = "WHERE " + context.getVariable("request.queryparam." + queryParam);
+    filter = "WHERE " + input_filter;
   
   if (order_by)
-    orderBy = "ORDER BY " + context.getVariable("request.queryparam." + queryParam);
+    orderBy = "ORDER BY " + order_by;
   
   if (page_size) {
-    var tempPageSize =  context.getVariable("request.queryparam." + queryParam);
-    pageSize = "LIMIT " + tempPageSize;
+    pageSize = "LIMIT " + page_size;
   }
 
   if (page_token) {
-    var tempPageToken =  context.getVariable("request.queryparam." + queryParam);
-    pageToken = "OFFSET " + parseInt(context.getVariable("request.queryparam.pageSize")) * (parseInt(tempPageToken) - 1);
-    //context.setVariable("bq.pageToken", tempPageToken);
-  }
-
-  if (pageSize == ""){
-    // Set default pageSize to 10
-    pageSize = "LIMIT 10";
-    //context.setVariable("bq.pageSize", pageSize);
+    pageToken = "OFFSET " + parseInt(page_size) * (parseInt(page_token) - 1);
   }
 
   var newQuery = "";
@@ -44,7 +37,7 @@ function generateQuery(query, table, input_filter = "", order_by = "", page_size
   return newQuery;
 }
 
-function convertResponse(dataResponseObject, entity_name, page_size, page_token) {
+function convertResponse(dataResponseObject, entity_name, page_token) {
 
   var responseObject = {};
 
