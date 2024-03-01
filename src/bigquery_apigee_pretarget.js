@@ -5,15 +5,20 @@ var entityName = context.getVariable("entityName");
 var objectName = context.getVariable(entityName);
 if (!objectName) objectName = entityName;
 
+print("BigQuery entity name: " + entityName + "\n");
+print("BigQuery object name: " + objectName + "\n");
+
 var query = "";
 var table = "";
-if (objectName && objectName.startsWith("table::"))
-  table = objectName.replace("::table", "");
-else if (objectName && objectName.startsWith("query::"))
-  query = objectName.replace("::query", "");
+if (objectName.startsWith("table::"))
+  table = objectName.replace("table::", "");
+else if (objectName.startsWith("query::"))
+  query = objectName.replace("query::", "");
 else
   table = objectName;
 
+print("BigQuery table input: " + table + "\n");
+print("BigQuery query input: " + query + "\n");
 context.setVariable("target.copy.pathsuffix", false);
 
 var filter = "";
@@ -39,6 +44,8 @@ for(var queryParam in request.queryParams){
 }
 
 var newQuery = generateQuery(query, table, filter, orderBy, pageSize, pageToken);
+
+print("BigQuery query: " + newQuery);
 
 context.targetRequest.body = '' +
   '{' + 

@@ -50,7 +50,7 @@ function convertResponse(dataResponseObject, entity_name, page_token) {
     responseObject["next_page_token"] = 2;
   }
 
-  return JSON.stringify(responseObject);
+  return responseObject;
 }
 
 function doConversionRows(inputObject, fields) {
