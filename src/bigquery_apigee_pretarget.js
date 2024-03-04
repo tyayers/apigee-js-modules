@@ -39,7 +39,7 @@ for(var queryParam in request.queryParams){
   }
   else if (queryParam == "pageToken") {
       pageToken =  context.getVariable("request.queryparam." + queryParam);
-      context.setVariable("bq.pageToken", tempPageToken);
+      context.setVariable("bq.pageToken", pageToken);
   }
 }
 
