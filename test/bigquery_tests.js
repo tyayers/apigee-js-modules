@@ -26,7 +26,6 @@ describe('#convertResponseSingle()', function() {
 describe('#convertResponse10Rows()', function() {
   it('should return a JSON record', function() {
     let response = bqFunctions.convertResponse(bigquery_rows1, "transactions");
-    console.log(response);
     assert.notEqual(response, "");
   });
 });
@@ -34,7 +33,6 @@ describe('#convertResponse10Rows()', function() {
 describe('#convertResponse10Rows2()', function() {
   it('should return a JSON record', function() {
     let response = bqFunctions.convertResponse(bigquery_rows2, "transactions");
-    console.log(response);
     assert.notEqual(response, "");
   });
 });

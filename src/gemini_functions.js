@@ -1,9 +1,4 @@
 
-// var questionResponse = convertResponse(JSON.parse(response.content));
-
-// context.setVariable("response.content", JSON.stringify({
-//   "answer": questionResponse
-// }));
 
 function convertResponse(dataResponseObject) {
   var result = "";
