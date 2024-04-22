@@ -35,26 +35,26 @@ let jsonToDocument = function (value) {
 
 }
 
-let documentToJson = function (fields) {
-  let result = {};
-  for (let f in fields) {
-      let key = f, value = fields[f],
-          isDocumentType = ['stringValue', 'booleanValue', 'doubleValue',
-              'integerValue', 'timestampValue', 'mapValue', 'arrayValue', 'nullValue'].find(t => t === key);
-      if (isDocumentType) {
-          let item = ['stringValue', 'booleanValue', 'doubleValue', 'integerValue', 'timestampValue', 'nullValue']
-              .find(t => t === key)
-          if (item)
-              return value;
-          else if ('mapValue' == key)
-              return documentToJson(value.fields || {});
-          else if ('arrayValue' == key) {
-              let list = value.values;
-              return !!list ? list.map(l => documentToJson(l)) : [];
-          }
-      } else {
-          result[key] = documentToJson(value)
-      }
+function documentToJson(fields) {
+    var result = {};
+    for (var f in fields) {
+        var key = f, value = fields[f],
+            isDocumentType = ['stringValue', 'booleanValue', 'doubleValue',
+                'integerValue', 'timestampValue', 'mapValue', 'arrayValue', 'nullValue'].find(t => t === key);
+        if (isDocumentType) {
+            var item = ['stringValue', 'booleanValue', 'doubleValue', 'integerValue', 'timestampValue', 'nullValue']
+                .find(t => t === key)
+            if (item)
+                return value;
+            else if ('mapValue' == key)
+                return documentToJson(value.fields || {});
+            else if ('arrayValue' == key) {
+                var list = value.values;
+                return !!list ? list.map(l => documentToJson(l)) : [];
+            }
+        } else {
+            result[key] = documentToJson(value)
+        }
+    }
+    return result;
   }
-  return result;
-}
