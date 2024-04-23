@@ -22,26 +22,32 @@ npm run test
 You should get these results.
 
 ```
-  #generateQuery("")
+  #generateBigQueryQuery("")
     ✔ should return an empty string
 
-  #generateQuery("", "test_table")
+  #generateBigQueryQuery("", "test_table")
     ✔ should return a simple query
 
-  #convertResponseSingle()
+  #convertBigQueryResponseSingle()
     ✔ should return a JSON record
 
-  #convertResponse10Rows()
+  #convertBigQueryResponse10Rows()
     ✔ should return a JSON record
 
-  #convertResponse10Rows2()
+  #convertBigQueryResponse10Rows2()
     ✔ should return a JSON record
 
   #convertFirestoreResponse1()
     ✔ should return a JSON record
 
+  #convertFirestoreRequest1
+    ✔ should return a Firestore request JSON record
+
   #convertGeminiResponse()
     ✔ should return a JSON record
+
+
+  8 passing (7ms)
 ```
 
-You can explore the conversions and test data used in the `./test` directory. The files under `./src` can be copied and used directly in Apigee proxies or Application Integration flows (pure JS exported functions).
+You can explore the conversions and test data used in the `./test` directory. The files under `./src` can be copied and used directly in Apigee proxies or Application Integration flows (pure JS exported CommonJS functions).

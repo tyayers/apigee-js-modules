@@ -4,33 +4,33 @@ let bigquery_row = require('./data/bigquery_row.json');
 let bigquery_rows1 = require('./data/bigquery_rows1.json');
 let bigquery_rows2 = require('./data/bigquery_rows2.json');
 
-describe('#generateQuery("")', function() {
+describe('#generateBigQueryQuery("")', function() {
   it('should return an empty string', function() {
     assert.strictEqual(bqFunctions.generateQuery("", ""), "");
   });
 });
 
-describe('#generateQuery("", "test_table")', function() {
+describe('#generateBigQueryQuery("", "test_table")', function() {
   it('should return a simple query', function() {
     assert.strictEqual(bqFunctions.generateQuery("", "test_table"), "SELECT * FROM test_table   LIMIT 10 ");
   });
 });
 
-describe('#convertResponseSingle()', function() {
+describe('#convertBigQueryResponseSingle()', function() {
   it('should return a JSON record', function() {
     let response = bqFunctions.convertResponse(bigquery_row, "transactions");
     assert.notEqual(response, "");
   });
 });
 
-describe('#convertResponse10Rows()', function() {
+describe('#convertBigQueryResponse10Rows()', function() {
   it('should return a JSON record', function() {
     let response = bqFunctions.convertResponse(bigquery_rows1, "transactions");
     assert.notEqual(response, "");
   });
 });
 
-describe('#convertResponse10Rows2()', function() {
+describe('#convertBigQueryResponse10Rows2()', function() {
   it('should return a JSON record', function() {
     let response = bqFunctions.convertResponse(bigquery_rows2, "transactions");
     assert.notEqual(response, "");

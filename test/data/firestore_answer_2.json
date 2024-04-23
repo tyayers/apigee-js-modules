@@ -1,8 +1,0 @@
-{
-  "list1": {
-    "arrayValue": {
-      "values": [{ "stringValue": "item1" }, { "stringValue": "item2" }]
-    }
-  },
-  "another_value": { "nullValue": null }
-}
