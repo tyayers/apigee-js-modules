@@ -4,7 +4,8 @@ function convertResponse(dataResponseObject) {
   var result = "";
 
   for (i = 0; i < dataResponseObject.length; i++) {
-    result += dataResponseObject[i]["candidates"][0]["content"]["parts"][0]["text"];
+    if (dataResponseObject[i]["candidates"][0]["content"] && dataResponseObject[i]["candidates"][0]["content"]["parts"] && dataResponseObject[i]["candidates"][0]["content"]["parts"].length > 0)
+      result += dataResponseObject[i]["candidates"][0]["content"]["parts"][0]["text"];
   }
 
   return result;
