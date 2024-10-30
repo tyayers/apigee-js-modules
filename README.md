@@ -5,7 +5,7 @@ This is a project for doing common Google Cloud Javascript conversions that can 
 - BigQuery input parameters to SQL statement
 - BigQuery response to JSON
 - Firestore response to JSON
-- Gemini answer to string
+- Gemini answer to string with token lengths
 - Sensitive data protection masking of results
 
 ## Install
@@ -49,6 +49,7 @@ You should get these results.
 
   #convertGeminiResponse()
     ✔ should return a JSON record
+    ✔ should return a the correct request & response token length
 
 
   9 passing (6ms)
