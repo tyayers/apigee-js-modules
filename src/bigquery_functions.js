@@ -80,6 +80,10 @@ function doConversion(inputObject, fields) {
         // child array
         result[fields[valueKey].name] = doConversion(value, fields[valueKey].fields);
       }
+      else if (type === "RECORD") {
+        // child object
+        result[fields[valueKey].name] = doConversion(value, fields[valueKey].fields);
+      }
     }
   }
   else if (inputObject.v) {
