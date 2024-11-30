@@ -93,9 +93,6 @@ function doConversion(inputObject, fields) {
       result = [];
       for (var valueKey in inputObject.v) {
         var value = inputObject.v[valueKey];
-        var type = fields[valueKey].type;
-        var mode = fields[valueKey].mode;
-
         result = result.concat(doConversion(value, fields));
       }
     }
