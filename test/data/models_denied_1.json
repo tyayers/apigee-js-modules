@@ -1,0 +1,11 @@
+{
+  "url": "https://34-8-196-4.nip.io/vertex/v1beta1/projects/$PROJECT_ID/locations/global/endpoints/openapi/chat/completions",
+  "type": "oai",
+  "requestContent": {
+    "model": "google/gemini-2.5-pro",
+    "stream": false,
+    "messages": [{}]
+  },
+  "allowedModelPatterns": "",
+  "deniedModelPatterns": "google"
+}

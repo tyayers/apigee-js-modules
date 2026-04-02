@@ -1,0 +1,20 @@
+{
+  "candidates": [
+    {
+      "content": { "role": "model", "parts": [{ "text": "." }] },
+      "finishReason": "STOP"
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 6891,
+    "candidatesTokenCount": 63,
+    "totalTokenCount": 7225,
+    "trafficType": "ON_DEMAND",
+    "promptTokensDetails": [{ "modality": "TEXT", "tokenCount": 6891 }],
+    "candidatesTokensDetails": [{ "modality": "TEXT", "tokenCount": 63 }],
+    "thoughtsTokenCount": 271
+  },
+  "modelVersion": "gemini-flash-latest",
+  "createTime": "2026-04-02T10:05:59.975275Z",
+  "responseId": "hz_OaavDO5Lwxs0P5sas8QQ"
+}
