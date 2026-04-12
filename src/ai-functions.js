@@ -1,3 +1,24 @@
+function getModelName(urlString, contentString) {
+  var modelName = "unknown";
+  if (urlString && urlString.includes("/models/")) {
+    // claude url format
+    var urlPieces = urlString.split("/models/");
+    if (urlPieces.length > 1) {
+      var urlPieces2 = urlPieces[1].split(":");
+      if (urlPieces2.length > 0) {
+        modelName = urlPieces2[0];
+      }
+    }
+  } else if (contentString) {
+    try {
+      var contentData = JSON.parse(contentString);
+      if (contentData && contentData["model"]) modelName = contentData["model"];
+    } catch (e) {}
+  }
+
+  return modelName;
+}
+
 function getUsageData(contentString) {
   var usageData = {
     model: "",
@@ -155,6 +176,7 @@ function testDeniedModels(requestInfo) {
 
 // this is to only export the function if in node
 if (typeof exports !== "undefined") {
+  exports.getModelName = getModelName;
   exports.getUsageData = getUsageData;
   exports.testAllowedModels = testAllowedModels;
   exports.testDeniedModels = testDeniedModels;
