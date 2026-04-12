@@ -6,6 +6,6 @@
     "stream": false,
     "messages": [{}]
   },
-  "allowedModelPatterns": "google",
+  "allowedModelPatterns": "google;anthropic",
   "deniedModelPatterns": ""
 }

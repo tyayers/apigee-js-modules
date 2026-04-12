@@ -113,7 +113,7 @@ function testAllowedModels(requestInfo) {
     requestInfo.allowedModelPatterns != "ALL"
   ) {
     result = false;
-    var patterns = requestInfo.allowedModelPatterns.split(",");
+    var patterns = requestInfo.allowedModelPatterns.split(";");
     for (var i = 0; i < patterns.length; i++) {
       var pattern = patterns[i];
       // var patternRegex = new RegExp(pattern);
@@ -147,7 +147,7 @@ function testDeniedModels(requestInfo) {
     requestInfo.deniedModelPatterns &&
     requestInfo.deniedModelPatterns != "NONE"
   ) {
-    var patterns = requestInfo.deniedModelPatterns.split(",");
+    var patterns = requestInfo.deniedModelPatterns.split(";");
     for (var i = 0; i < patterns.length; i++) {
       var pattern = patterns[i];
       // var patternRegex = new RegExp(pattern);
