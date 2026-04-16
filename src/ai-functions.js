@@ -19,6 +19,39 @@ function getModelName(urlString, contentString) {
   return modelName;
 }
 
+function getPrompts(contentString) {
+  var promptInfo = {
+    userPrompt: "",
+    allUserPrompts: "",
+  };
+
+  try {
+    var contentData = JSON.parse(contentString);
+
+    if (contentData && contentData["contents"]) {
+      for (i = contentData["contents"].length - 1; i >= 0; i--) {
+        var content = contentData["contents"][i];
+        if (content && content["role"] == "user" && content["parts"]) {
+          for (p = content["parts"].length - 1; p >= 0; p--) {
+            var part = content["parts"][p];
+            if (!promptInfo.userPrompt && content["parts"][p]["text"]) {
+              promptInfo.userPrompt = content["parts"][p]["text"];
+            }
+
+            if (content["parts"][p]["text"]) {
+              promptInfo.allUserPrompts += " " + content["parts"][p]["text"];
+            }
+          }
+        }
+      }
+    }
+  } catch (e) {
+    print("Exception in processing data: " + e.message);
+  }
+
+  return promptInfo;
+}
+
 function getUsageData(contentString) {
   var usageData = {
     model: "",
@@ -177,6 +210,7 @@ function testDeniedModels(requestInfo) {
 // this is to only export the function if in node
 if (typeof exports !== "undefined") {
   exports.getModelName = getModelName;
+  exports.getPrompts = getPrompts;
   exports.getUsageData = getUsageData;
   exports.testAllowedModels = testAllowedModels;
   exports.testDeniedModels = testDeniedModels;

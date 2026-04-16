@@ -3,6 +3,14 @@ let aiFunctions = require("../src/ai-functions");
 let allowedModelsRequest = require("./data/models_allowed_1.json");
 let deniedModelsRequest = require("./data/models_denied_1.json");
 let vertexOpenModelRequest = require("./data/vertex_openmodel_request1.json");
+let vertexAdkRequest = require("./data/vertex_adk_request_1.json");
+
+describe("#testGetPrompts()", function () {
+  it("should get the prompt data", function () {
+    let response = aiFunctions.getPrompts(JSON.stringify(vertexAdkRequest));
+    assert.equal(response.userPrompt, "what can you do?");
+  });
+});
 
 describe("#testGetModelClaude()", function () {
   it("find the model name", function () {
