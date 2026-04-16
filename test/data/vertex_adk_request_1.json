@@ -1,0 +1,30 @@
+{
+  "contents": [
+    {
+      "parts": [
+        {
+          "text": "hi"
+        }
+      ],
+      "role": "user"
+    },
+    {
+      "parts": [
+        {
+          "text": "Hello! How can I help you today?",
+          "thought_signature": "CpYBAY89a18NHJZHsblVyPAIWWCBJbCMnpeJnrmcwmK2iBWs7KndvPBnbY5du24AoEh5YKNg5EFZIopGChTXQPdYejoLtmiRZgzTgyMMJ263DmLkgbAdjRndTybgIZnW2cRA3mNxHVHCkxj8qrMXCcAJ4BKhcfIfrB6Qm8H7WBsP-TudTaigCwa1B6J7o2YDyASWbD4m7xY9"
+        }
+      ],
+      "role": "model"
+    },
+    {
+      "parts": [
+        {
+          "text": "what can you do?"
+        }
+      ],
+      "role": "user"
+    }
+  ],
+  "systemInstruction": {}
+}
