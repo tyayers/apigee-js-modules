@@ -26,6 +26,7 @@ function getPrompts(contentData) {
   };
 
   if (contentData && contentData["contents"]) {
+    // gemini format
     for (i = contentData["contents"].length - 1; i >= 0; i--) {
       var content = contentData["contents"][i];
       if (
@@ -43,6 +44,24 @@ function getPrompts(contentData) {
           if (content["parts"][p]["text"]) {
             promptInfo.allUserPrompts += " " + content["parts"][p]["text"];
           }
+        }
+      }
+    }
+  } else if (contentData && contentData["messages"]) {
+    // oapi format
+    for (i = contentData["messages"].length - 1; i >= 0; i--) {
+      var message = contentData["messages"][i];
+      if (
+        message &&
+        message["role"] &&
+        message["role"].toLowerCase() == "user"
+      ) {
+        if (!promptInfo.userPrompt && message["content"]) {
+          promptInfo.userPrompt = message["content"];
+        }
+
+        if (message["content"]) {
+          promptInfo.allUserPrompts += " " + message["content"];
         }
       }
     }

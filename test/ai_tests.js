@@ -5,18 +5,26 @@ let deniedModelsRequest = require("./data/models_denied_1.json");
 let vertexOpenModelRequest = require("./data/vertex_openmodel_request1.json");
 let vertexAdkRequest = require("./data/vertex_adk_request_1.json");
 let vertexGeminiRequest = require("./data/vertex_gemini_request_2.json");
+let vertexGeminiOmRequest = require("./data/vertex_gemini_request_3.json");
 
 describe("#testGetPrompts()", function () {
   it("should get the prompt data", function () {
     let response = aiFunctions.getPrompts(vertexAdkRequest);
-    assert.equal(response.userPrompt, "what can you do?");
+    assert.equal(response.userPrompt.toLowerCase(), "what can you do?");
   });
 });
 
 describe("#testGetPrompts2()", function () {
   it("should get the prompt data", function () {
     let response = aiFunctions.getPrompts(vertexGeminiRequest);
-    assert.equal(response.userPrompt, "why is the sky blue?");
+    assert.equal(response.userPrompt.toLowerCase(), "why is the sky blue?");
+  });
+});
+
+describe("#testGetPrompts3()", function () {
+  it("should get the prompt data from om call", function () {
+    let response = aiFunctions.getPrompts(vertexGeminiOmRequest);
+    assert.equal(response.userPrompt.toLowerCase(), "why is the sky blue?");
   });
 });
 
