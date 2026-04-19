@@ -13,6 +13,10 @@ function getModelName(urlString, contentString) {
     try {
       var contentData = JSON.parse(contentString);
       if (contentData && contentData["model"]) modelName = contentData["model"];
+      if (modelName.includes("/")) {
+        var modelNamePieces = modelName.split("/");
+        modelName = modelNamePieces[modelNamePieces.length - 1];
+      }
     } catch (e) {}
   }
 
@@ -104,6 +108,10 @@ function getUsageData(contentString) {
       }
       if (contentData["message"] && contentData["message"]["model"]) {
         usageData.model = contentData["message"]["model"];
+      }
+      if (usageData.model.includes("/")) {
+        var modelNamePieces = usageData.model.split("/");
+        usageData.model = modelNamePieces[modelNamePieces.length - 1];
       }
 
       // requestTokenCount

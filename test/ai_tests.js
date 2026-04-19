@@ -44,7 +44,7 @@ describe("#testGetModelOpen()", function () {
       "https://aiplatform.googleapis.com/v1beta1/projects/apigee-hub-demo/locations/global/endpoints/openapi/chat/completions",
       JSON.stringify(vertexOpenModelRequest),
     );
-    assert.equal(modelName, "google/gemini-flash-latest");
+    assert.equal(modelName, "gemini-flash-latest");
   });
 });
 
