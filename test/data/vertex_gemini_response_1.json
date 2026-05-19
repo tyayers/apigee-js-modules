@@ -1,0 +1,37 @@
+{
+  "candidates": [
+    {
+      "content": {
+        "role": "model",
+        "parts": [
+          {
+            "text": "That's a classic and excellent question! The reason the sky appears blue is due to a phenomenon called **Rayleigh scattering**.\n\nHere is a breakdown of why this happens:\n\n---\n\n## 1. Sunlight and Colors\n\nSunlight, which appears white to us, is actually composed of the full spectrum of colors—red, orange, yellow, green, blue, and violet—(the colors you see in a rainbow). Each of these colors corresponds to a different **wavelength** of light.\n\n*   **Longer Wavelengths:** Red and orange light have longer, slower waves.\n*   **Shorter Wavelengths:** Blue and violet light have shorter, faster waves.\n\n## 2. Earth's Atmosphere\n\nEarth is surrounded by an atmosphere made up primarily of nitrogen and oxygen molecules. These molecules are significantly smaller than the wavelengths of visible light.\n\n## 3. Rayleigh Scattering\n\nWhen sunlight enters the atmosphere, it collides with these tiny air molecules. This is where the scattering comes in:\n\n*   **Preference for Blue:** The small size of the atmospheric molecules makes them much more effective at scattering **shorter wavelengths** of light (blue and violet) than the longer wavelengths (red and yellow).\n*   **The Effect:** When the sunlight hits the atmosphere, the blue and violet light gets scattered in all directions across the sky, while the red and yellow light tends to travel more directly through to the ground.\n*   **What We See:** Since blue light is scattered everywhere, no matter which direction you look in the sky, your eyes are catching this scattered blue light, making the sky look blue.\n\n## 4. Why Not Violet?\n\nIf violet light has an even shorter wavelength than blue light, why isn't the sky violet?\n\n1.  **Sunlight Composition:** The sun actually emits slightly less violet light than blue light.\n2.  **Our Eyes:** Human eyes are less sensitive to violet light than to blue light. Our perception blends the scattered violet and blue light, and because we are more sensitive to blue, we perceive the sky as blue.\n\n---\n\n## Bonus: Why Sunsets Are Red\n\nThis same process explains why sunrises and sunsets look red, orange, and pink:\n\n1.  **Longer Path:** When the sun is near the horizon (sunrise or sunset), its light has to travel through a much thicker section of the atmosphere to reach your eyes.\n2.  **Maximum Scattering:** By the time the light reaches you, nearly all the short-wavelength light (blue and green) has been scattered away, completely removed from the beam of light heading toward you.\n3.  **Direct Path:** What remains are the longer wavelengths—red, orange, and yellow—which pass more directly through the atmosphere, making the sun and the surrounding sky appear warm-colored."
+          }
+        ]
+      },
+      "finishReason": "STOP",
+      "avgLogprobs": -0.35659743565593272
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 6,
+    "candidatesTokenCount": 591,
+    "totalTokenCount": 597,
+    "trafficType": "ON_DEMAND",
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 6
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 591
+      }
+    ]
+  },
+  "modelVersion": "gemini-flash-latest",
+  "createTime": "2026-05-19T09:55:11.708158Z",
+  "responseId": "fzMMar6cK4-D2fMPqoO24Qo"
+}

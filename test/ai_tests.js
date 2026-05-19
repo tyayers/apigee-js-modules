@@ -6,6 +6,9 @@ let vertexOpenModelRequest = require("./data/vertex_openmodel_request1.json");
 let vertexAdkRequest = require("./data/vertex_adk_request_1.json");
 let vertexGeminiRequest = require("./data/vertex_gemini_request_2.json");
 let vertexGeminiOmRequest = require("./data/vertex_gemini_request_3.json");
+let vertexClaudeResponse2 = require("./data/vertex_claude_response_2.json");
+let vertexGeminiResponse1 = require("./data/vertex_gemini_response_1.json");
+let vertexOpenModelResponse1 = require("./data/vertex_openmodel_response1.json");
 
 describe("#testGetPrompts()", function () {
   it("should get the prompt data", function () {
@@ -32,6 +35,48 @@ describe("#testSetPrompt1()", function () {
   it("set the user prompt data", function () {
     let response = aiFunctions.setPrompt(vertexGeminiRequest, "new prompt text");
     assert.equal(response["contents"][0]["parts"][0]["text"], "new prompt text");
+  });
+});
+
+describe("#getResponseClaude1()", function () {
+  it("get the claude response", function () {
+    let response = aiFunctions.getResponse(vertexClaudeResponse2);
+    assert.notEqual(response, "");
+  });
+});
+
+describe("#setResponseClaude1()", function () {
+  it("set the claude response", function () {
+    let response = aiFunctions.setResponse(vertexClaudeResponse2, "hello world");
+    assert.equal(response["content"][0]["text"], "hello world");
+  });
+});
+
+describe("#getResponseGemini1()", function () {
+  it("get the gemini response", function () {
+    let response = aiFunctions.getResponse(vertexGeminiResponse1);
+    assert.notEqual(response, "");
+  });
+});
+
+describe("#setResponseGemini1()", function () {
+  it("set the gemini response", function () {
+    let response = aiFunctions.setResponse(vertexGeminiResponse1, "hello world");
+    assert.equal(response["candidates"][0]["content"]["parts"][0]["text"], "hello world");
+  });
+});
+
+describe("#getResponseOpenModel1()", function () {
+  it("get the claude response", function () {
+    let response = aiFunctions.getResponse(vertexOpenModelResponse1);
+    assert.notEqual(response, "");
+  });
+});
+
+describe("#setResponseOpenModel1()", function () {
+  it("set the open model response", function () {
+    let response = aiFunctions.setResponse(vertexOpenModelResponse1, "hello world");
+    assert.equal(response["choices"][0]["message"]["content"], "hello world");
   });
 });
 
