@@ -28,6 +28,13 @@ describe("#testGetPrompts3()", function () {
   });
 });
 
+describe("#testSetPrompt1()", function () {
+  it("set the user prompt data", function () {
+    let response = aiFunctions.setPrompt(vertexGeminiRequest, "new prompt text");
+    assert.equal(response["contents"][0]["parts"][0]["text"], "new prompt text");
+  });
+});
+
 describe("#testGetModelClaude()", function () {
   it("find the model name", function () {
     let modelName = aiFunctions.getModelName(

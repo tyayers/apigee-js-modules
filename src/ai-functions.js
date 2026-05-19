@@ -55,11 +55,7 @@ function getPrompts(contentData) {
     // oapi format
     for (i = contentData["messages"].length - 1; i >= 0; i--) {
       var message = contentData["messages"][i];
-      if (
-        message &&
-        message["role"] &&
-        message["role"].toLowerCase() == "user"
-      ) {
+      if (message && message["role"] && message["role"].toLowerCase() == "user") {
         if (!promptInfo.userPrompt && message["content"]) {
           promptInfo.userPrompt = message["content"];
         }
@@ -72,6 +68,42 @@ function getPrompts(contentData) {
   }
 
   return promptInfo;
+}
+
+function setPrompt(contentData, userPrompt) {
+  if (contentData && contentData["contents"]) {
+    // gemini format
+    for (i = contentData["contents"].length - 1; i >= 0; i--) {
+      var content = contentData["contents"][i];
+      if (
+        content &&
+        content["role"] &&
+        content["role"].toLowerCase() == "user" &&
+        content["parts"]
+      ) {
+        for (p = content["parts"].length - 1; p >= 0; p--) {
+          var part = content["parts"][p];
+          if (content["parts"][p]["text"]) {
+            content["parts"][p]["text"] = userPrompt;
+            break;
+          }
+        }
+      }
+    }
+  } else if (contentData && contentData["messages"]) {
+    // oapi format
+    for (i = contentData["messages"].length - 1; i >= 0; i--) {
+      var message = contentData["messages"][i];
+      if (message && message["role"] && message["role"].toLowerCase() == "user") {
+        if (message["content"]) {
+          message["content"] = userPrompt;
+          break;
+        }
+      }
+    }
+  }
+
+  return contentData;
 }
 
 function getUsageData(contentString) {
@@ -125,37 +157,27 @@ function getUsageData(contentString) {
         contentData["message"]["usage"] &&
         contentData["message"]["usage"]["input_tokens"]
       ) {
-        usageData.requestTokenCount =
-          contentData["message"]["usage"]["input_tokens"];
+        usageData.requestTokenCount = contentData["message"]["usage"]["input_tokens"];
       }
       if (contentData["usage"] && contentData["usage"]["input_tokens"]) {
         usageData.requestTokenCount = contentData["usage"]["input_tokens"];
       }
       // gemini API
-      if (
-        contentData["usageMetadata"] &&
-        contentData["usageMetadata"]["promptTokenCount"]
-      ) {
-        usageData.requestTokenCount =
-          contentData["usageMetadata"]["promptTokenCount"];
+      if (contentData["usageMetadata"] && contentData["usageMetadata"]["promptTokenCount"]) {
+        usageData.requestTokenCount = contentData["usageMetadata"]["promptTokenCount"];
       }
 
       // responseTokenCount
       // openmodels
       if (contentData["usage"] && contentData["usage"]["completion_tokens"])
-        usageData.responseTokenCount =
-          contentData["usage"]["completion_tokens"];
+        usageData.responseTokenCount = contentData["usage"]["completion_tokens"];
       // claude
       if (contentData["usage"] && contentData["usage"]["output_tokens"]) {
         usageData.responseTokenCount = contentData["usage"]["output_tokens"];
       }
       // gemini
-      if (
-        contentData["usageMetadata"] &&
-        contentData["usageMetadata"]["candidatesTokenCount"]
-      ) {
-        usageData.responseTokenCount =
-          contentData["usageMetadata"]["candidatesTokenCount"];
+      if (contentData["usageMetadata"] && contentData["usageMetadata"]["candidatesTokenCount"]) {
+        usageData.responseTokenCount = contentData["usageMetadata"]["candidatesTokenCount"];
       }
     } catch (e) {
       print("Exception in getUsageData: " + JSON.stringify(e));
@@ -167,10 +189,7 @@ function getUsageData(contentString) {
 
 function testAllowedModels(requestInfo) {
   var result = true;
-  if (
-    requestInfo.allowedModelPatterns &&
-    requestInfo.allowedModelPatterns != "ALL"
-  ) {
+  if (requestInfo.allowedModelPatterns && requestInfo.allowedModelPatterns != "ALL") {
     result = false;
     var patterns = requestInfo.allowedModelPatterns.split(";");
     for (var i = 0; i < patterns.length; i++) {
@@ -185,10 +204,7 @@ function testAllowedModels(requestInfo) {
         //   result = true;
         //   break;
         // }
-      } else if (
-        requestInfo.type == "oai" &&
-        requestInfo.requestContent["model"]
-      ) {
+      } else if (requestInfo.type == "oai" && requestInfo.requestContent["model"]) {
         if (requestInfo.requestContent["model"].includes(pattern)) {
           result = true;
           break;
@@ -202,10 +218,7 @@ function testAllowedModels(requestInfo) {
 
 function testDeniedModels(requestInfo) {
   var result = true;
-  if (
-    requestInfo.deniedModelPatterns &&
-    requestInfo.deniedModelPatterns != "NONE"
-  ) {
+  if (requestInfo.deniedModelPatterns && requestInfo.deniedModelPatterns != "NONE") {
     var patterns = requestInfo.deniedModelPatterns.split(";");
     for (var i = 0; i < patterns.length; i++) {
       var pattern = patterns[i];
@@ -215,10 +228,7 @@ function testDeniedModels(requestInfo) {
           result = false;
           break;
         }
-      } else if (
-        requestInfo.type == "oai" &&
-        requestInfo.requestContent["model"]
-      ) {
+      } else if (requestInfo.type == "oai" && requestInfo.requestContent["model"]) {
         if (requestInfo.requestContent["model"].includes(pattern)) {
           result = false;
           break;
@@ -237,6 +247,7 @@ function testDeniedModels(requestInfo) {
 if (typeof exports !== "undefined") {
   exports.getModelName = getModelName;
   exports.getPrompts = getPrompts;
+  exports.setPrompt = setPrompt;
   exports.getUsageData = getUsageData;
   exports.testAllowedModels = testAllowedModels;
   exports.testDeniedModels = testDeniedModels;
