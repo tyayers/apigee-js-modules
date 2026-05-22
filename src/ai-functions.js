@@ -283,7 +283,7 @@ function testAllowedModels(requestInfo) {
     for (var i = 0; i < patterns.length; i++) {
       var pattern = patterns[i];
       // var patternRegex = new RegExp(pattern);
-      if (requestInfo.type == "vertex") {
+      if (requestInfo.type == "googlecloud") {
         if (requestInfo.url.includes(pattern)) {
           result = true;
           break;
@@ -311,7 +311,7 @@ function testDeniedModels(requestInfo) {
     for (var i = 0; i < patterns.length; i++) {
       var pattern = patterns[i];
       // var patternRegex = new RegExp(pattern);
-      if (requestInfo.type == "vertex") {
+      if (requestInfo.type == "googlecloud") {
         if (requestInfo.url.includes(pattern)) {
           result = false;
           break;
