@@ -80,6 +80,16 @@ describe("#setResponseOpenModel1()", function () {
   });
 });
 
+describe("#testGetModelGemini()", function () {
+  it("find the model name", function () {
+    let modelName = aiFunctions.getModelName(
+      "https://34-111-185-182.nip.io/models/v1/projects/apigee-klab1/locations/europe-west1/publishers/google/models/gemini-flash-latest:generateContent",
+      "",
+    );
+    assert.equal(modelName, "gemini-flash-latest");
+  });
+});
+
 describe("#testGetModelClaude()", function () {
   it("find the model name", function () {
     let modelName = aiFunctions.getModelName(
